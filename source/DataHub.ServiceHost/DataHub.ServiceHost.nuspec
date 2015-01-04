@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>datahub.servicehost</id>
+    <version>$version$</version>
+    <title>Demo - Windows Service Host</title>
+    <authors>Richard A. Bennett</authors>
+    <owners>Richard A. Bennett</owners>
+    <description>demo of a windows service host.</description>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\*.*" target="lib\net45\" />
+  </files>
+</package>

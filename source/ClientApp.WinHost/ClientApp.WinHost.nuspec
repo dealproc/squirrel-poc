@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>clientapp.winhost</id>
+    <version>$version$</version>
+    <title>Demo - WPF Client App</title>
+    <authors>Richard A. Bennett</authors>
+    <owners>Richard A. Bennett</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>demo of a client app package</description>
+    <copyright>Copyright 2015</copyright>
+  </metadata>
+  <files>
+    <file src="bin\$configuration$\*.*" target="lib\net45\" />
+  </files>
+</package>
