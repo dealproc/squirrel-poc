@@ -122,7 +122,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Version 0.0.1 -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir)</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Version 0.0.1 -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir) -Verbose
+
+$(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)$(ProjectName).0.0.1.nupkg --releaseDir=$(SolutionDir)releases\DataHub\</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
