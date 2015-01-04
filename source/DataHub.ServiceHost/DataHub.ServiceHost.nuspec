@@ -12,5 +12,6 @@
   <files>
     <file src="bin\$configuration$\*.*" target="lib\net45\" />
     <file src="..\..\Releases\ClientApp\**" target="lib\net45\releases\" />
+    <file src="..\..\Releases\ClientApp\clientapp.winhost-0.0.1-full.nupkg" target="lib\net45\releases\" />
   </files>
 </package>
