@@ -94,6 +94,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Sample.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,14 +148,15 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Version 0.0.1 -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir)
+    <PostBuildEvent>
+      $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Version 0.0.1 -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir)
 
-$(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)$(ProjectName).0.0.1.nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
-
-rename $(SolutionDir)releases\ClientApp\$(ProjectName)-0.0.1-full.nupkg $(ProjectName)-0.0.1-full.zip</PostBuildEvent>
+      $(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)$(ProjectName).0.0.1.nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
+      rename $(SolutionDir)releases\ClientApp\$(ProjectName)-0.0.1-full.nupkg $(ProjectName)-0.0.1-full.zip
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
