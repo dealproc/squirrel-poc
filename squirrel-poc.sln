@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management.WebHost", "source\Management.WebHost\Management.WebHost.csproj", "{72A0F11B-C0CE-4740-95AC-8D1C443C2D72}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A133E02F-1311-4C73-8325-8A231A69076C} = {A133E02F-1311-4C73-8325-8A231A69076C}
+		{92666D7C-59EC-46ED-A639-A10E0CAAD021} = {92666D7C-59EC-46ED-A639-A10E0CAAD021}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHub.ServiceHost", "source\DataHub.ServiceHost\DataHub.ServiceHost.csproj", "{A133E02F-1311-4C73-8325-8A231A69076C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{92666D7C-59EC-46ED-A639-A10E0CAAD021} = {92666D7C-59EC-46ED-A639-A10E0CAAD021}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp.WinHost", "source\ClientApp.WinHost\ClientApp.WinHost.csproj", "{92666D7C-59EC-46ED-A639-A10E0CAAD021}"
 EndProject
