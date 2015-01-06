@@ -11,6 +11,6 @@
   </metadata>
   <files>
     <file src="bin\$configuration$\*.*" target="lib\net45\" />
-    <file src="..\..\Releases\ClientApp\**" target="lib\net45\releases\" />
+    <file src="..\..\release\ClientApp\**" target="lib\net45\releases\" />
   </files>
 </package>
