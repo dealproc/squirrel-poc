@@ -121,11 +121,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\packages\MSBuild.Extension.Pack.1.5.0\tools\net40\MSBuild.ExtensionPack.tasks"/>
+  <Import Project="$(SolutionDir)\packages\MSBuild.Extension.Pack.1.5.0\tools\net40\MSBuild.ExtensionPack.tasks" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Version 0.0.1 -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir) -Verbose -NoDefaultExcludes
-
-$(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)$(ProjectName).0.0.1.nupkg --releaseDir=$(SolutionDir)releases\DataHub\</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -146,5 +145,4 @@ $(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(So
       CompressFiles="$(SolutionDir)releases\ClientApp\*.nupkg"
       RemoveRoot="$(SolutionDir)Releases\DataHub" />-->
   </Target>
-
 </Project>

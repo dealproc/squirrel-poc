@@ -149,10 +149,7 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
-      $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Version 0.0.1 -Prop Configuration=$(ConfigurationName) -OutputDirectory $(SolutionDir)
-
-      $(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)$(ProjectName).0.0.1.nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
-</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
