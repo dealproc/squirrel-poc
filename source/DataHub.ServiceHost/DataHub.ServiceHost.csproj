@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Version Condition=" '$(Version)' == '' ">1.0.0.0</Version>
     <ProjectGuid>{A133E02F-1311-4C73-8325-8A231A69076C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -124,7 +125,9 @@
   <Import Project="$(SolutionDir)\packages\MSBuild.Extension.Pack.1.5.0\tools\net40\MSBuild.ExtensionPack.tasks" />
   <PropertyGroup>
     <PostBuildEvent>
-    </PostBuildEvent>
+      $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package -NoDefaultExcludes
+      $(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)package\$(ProjectName).$(Version).nupkg --releaseDir=$(SolutionDir)releases\DataHub\
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -137,12 +140,9 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   -->
   <Target Name="BeforeBuild">
+    <MakeDir Directories="$(SolutionDir)package" Condition="!Exists('$(SolutionDir)package')" />
+    <Delete Files="$(SolutionDir)package\**" />
   </Target>
   <Target Name="AfterBuild">
-    <!--<MSBuild.ExtensionPack.Compression.Zip
-      TaskAction="AddFiles"
-      ZipFileName="$(SolutionDir)releases\DataHub\datahub.servicehost-0.0.1-full.nupkg"
-      CompressFiles="$(SolutionDir)releases\ClientApp\*.nupkg"
-      RemoveRoot="$(SolutionDir)Releases\DataHub" />-->
   </Target>
 </Project>
