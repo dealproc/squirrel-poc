@@ -10,6 +10,6 @@
     <copyright>Copyright 2015</copyright>
   </metadata>
   <files>
-    <file src="..\..\releases\DataHub\**" target="Releases" />
+    <file src="..\..\release\DataHub\**" target="Releases" />
   </files>
 </package>
