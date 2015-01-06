@@ -4,6 +4,8 @@
     <id>management.webhost</id>
     <version>$version$</version>
     <title>Management Web Host</title>
+    <authors>Richard A. Bennett</authors>
+    <description>Management Web Host Application - This is only a demo project.</description>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>Copyright 2015</copyright>
   </metadata>
