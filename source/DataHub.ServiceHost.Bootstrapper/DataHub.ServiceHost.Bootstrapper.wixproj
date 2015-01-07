@@ -3,10 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Version Condition=" '$(Version)' == '' ">1.0.0.0</Version>
+    <DefineConstants>Version=$(Version)</DefineConstants>
     <ProductVersion>3.9</ProductVersion>
     <ProjectGuid>07349bee-eab2-4113-884d-7abf55c5c198</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>DataHub.ServiceHost.Bootstrapper</OutputName>
+    <OutputName>DataHub-ServiceHost-$(Platform)-$(Configuration)-$(Version)</OutputName>
     <OutputType>Bundle</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
@@ -14,7 +16,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
+    <DefineConstants>$(DefineConstants);Debug</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -24,6 +26,10 @@
     <Compile Include="Bundle.wxs" />
   </ItemGroup>
   <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
     <WixExtension Include="WixBalExtension">
       <HintPath>$(WixExtDir)\WixBalExtension.dll</HintPath>
       <Name>WixBalExtension</Name>

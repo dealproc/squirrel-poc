@@ -8,7 +8,7 @@
       <Component Id="cmp0CA316DBE534C70B7E7E6AD1A5B2D31E" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil9283C9B1DE7FE659C7067A77745FF3B0" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe">
           <!-- From: http://www.joyofsetup.com/2008/05/17/new-wix-feature-firewall-extension/ -->
-          <fire:FirewallException Id="FWX1" Name="DataHub ServiceHost" Scope="localSubnet" IgnoreFailure="yes" Profile="all" Port="80" />
+          <fire:FirewallException Id="FWX1" Name="DataHub ServiceHost" Scope="localSubnet" IgnoreFailure="yes" Profile="all" Port="8080" />
         </File>
       </Component>
       <Component Id="cmpFFCA30133865743598888A031A2AC621" Directory="INSTALLFOLDER" Guid="*">
