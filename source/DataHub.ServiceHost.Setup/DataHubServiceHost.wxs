@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:fire="http://schemas.microsoft.com/wix/FirewallExtension">
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER" />
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="DataHubServiceHost">
+      <Component Id="cmp0CA316DBE534C70B7E7E6AD1A5B2D31E" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil9283C9B1DE7FE659C7067A77745FF3B0" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe">
+          <!-- From: http://www.joyofsetup.com/2008/05/17/new-wix-feature-firewall-extension/ -->
+          <fire:FirewallException Id="FWX1" Name="DataHub ServiceHost" Scope="localSubnet" IgnoreFailure="yes" Profile="all" Port="80" />
+        </File>
+      </Component>
+      <Component Id="cmpFFCA30133865743598888A031A2AC621" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil0F9E08B6FDAF6FA5A508639C8BC41AF1" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe.config" />
+      </Component>
+      <Component Id="cmpF4291D1794E2E67C6B096D5FD271DD69" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filE8ACCC3757E7DCB18A2EF7973F7D67AC" KeyPath="yes" Source="$(var.ServiceHostFiles)\DeltaCompressionDotNet.dll" />
+      </Component>
+      <Component Id="cmp3AF8DAE5A5815FF7DF4A8312CEF412EF" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil87F1ED90A6989050C8EC57CE22A3913A" KeyPath="yes" Source="$(var.ServiceHostFiles)\DeltaCompressionDotNet.MsDelta.dll" />
+      </Component>
+      <Component Id="cmp5D616E6366FC406C7A882A76B4352194" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filF26F8F4C18C9B96F7D07ADAB22C05068" KeyPath="yes" Source="$(var.ServiceHostFiles)\DeltaCompressionDotNet.PatchApi.dll" />
+      </Component>
+      <Component Id="cmp28F47D9A07DA0DB70D726116C5513C1D" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filFBF72465D947A4CEAA8F094AB2ABC988" KeyPath="yes" Source="$(var.ServiceHostFiles)\ICSharpCode.SharpZipLib.dll" />
+      </Component>
+      <Component Id="cmpAAA15040B9A962C3965B382ECEBE8E7F" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil777F77FDDF3EED9589F6B0772E942AF4" KeyPath="yes" Source="$(var.ServiceHostFiles)\ICSharpCode.SharpZipLib.xml" />
+      </Component>
+      <Component Id="cmp01AA85052885F814DD68CCEEC4BF6D28" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil2DABFCAF651FA2B530D7940929963FBD" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.dll" />
+      </Component>
+      <Component Id="cmp2E6B41DBA3E69AC005273653DF0A2ADA" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil51431476551B576E0DE40837C96DAF03" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.Host.HttpListener.dll" />
+      </Component>
+      <Component Id="cmp8AD1138A6535E2030DDB8BF2F6959BF5" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filF7D89B06AB1046B5EF6BEBDA949D23F4" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.Host.HttpListener.xml" />
+      </Component>
+      <Component Id="cmp9C5447F2399454B10B9F0FC887DF9ADB" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil3AB98243EA65101433F69CE219A2DB63" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.Hosting.dll" />
+      </Component>
+      <Component Id="cmp00364872D0BC2B790B11864FDE45628A" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filC78AD7286EBDE65520D8AA273521AFA1" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.Hosting.xml" />
+      </Component>
+      <Component Id="cmpB67C988B41CF6589537DF395BD541C70" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil55B3646256BE80E6EA514C06528BBF41" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.xml" />
+      </Component>
+      <Component Id="cmp04982E72D3E0ED6FFEAFD6276278CC36" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil5C93D46EEAD99434A2AA743265603FEF" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Web.XmlTransform.dll" />
+      </Component>
+      <Component Id="cmp533354A25CA93FF3B8EB06268C7FDEDC" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil426730C05C34F31A8FFC29BD24DC16B1" KeyPath="yes" Source="$(var.ServiceHostFiles)\Mono.Cecil.dll" />
+      </Component>
+      <Component Id="cmp1CF9D9D3016E4D3190366F1DCD0F2F26" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil539AAF025A86DB6AAEED310DC7493ABE" KeyPath="yes" Source="$(var.ServiceHostFiles)\Mono.Cecil.Mdb.dll" />
+      </Component>
+      <Component Id="cmpB4B96E74FF236FD5613B9C81C7860BCA" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filDB6A1D5D8BBBA53A93AE716DB99FCE7A" KeyPath="yes" Source="$(var.ServiceHostFiles)\Mono.Cecil.Pdb.dll" />
+      </Component>
+      <Component Id="cmp869D2C77E8A66E35CD65E4431CD62DF4" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil1A6ACD72E27664742EE1044492933A02" KeyPath="yes" Source="$(var.ServiceHostFiles)\Mono.Cecil.Rocks.dll" />
+      </Component>
+      <Component Id="cmp3C40385889C0A6C29C06D1F58520BED2" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil59B7CA28C1ADB6A9766F27CC284885BD" KeyPath="yes" Source="$(var.ServiceHostFiles)\Nancy.dll" />
+      </Component>
+      <Component Id="cmpEF20B6915F346EA86C3A079B70D46632" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filB14454079792821784D087462DD60F70" KeyPath="yes" Source="$(var.ServiceHostFiles)\Nancy.Owin.dll" />
+      </Component>
+      <Component Id="cmpDDF0B99FD962E25479F2F14D0E56B449" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil50FE436796E389870385C9D224C2008B" KeyPath="yes" Source="$(var.ServiceHostFiles)\Nancy.Owin.xml" />
+      </Component>
+      <Component Id="cmpB3412603A111494BAEDE3F10C3EFF4AA" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filD8DA0E6E14EEFA2C769E93B4FD8D9D81" KeyPath="yes" Source="$(var.ServiceHostFiles)\Nancy.xml" />
+      </Component>
+      <Component Id="cmpD8ED47FF6591F8F1ED1E985908501E99" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil0540360A001828220104A8C4C08B4247" KeyPath="yes" Source="$(var.ServiceHostFiles)\NuGet.Core.dll" />
+      </Component>
+      <Component Id="cmpEFC6E6DF45D8BCCD8833915E59A68DD4" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil3498A6F260EBF4B5230ED05F72D3C390" KeyPath="yes" Source="$(var.ServiceHostFiles)\Owin.dll" />
+      </Component>
+      <Component Id="cmpECC0DB43D675D3354C308FED694EB2A4" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil096A18880498670BA154574207EB2E0F" KeyPath="yes" Source="$(var.ServiceHostFiles)\Splat.dll" />
+      </Component>
+      <Component Id="cmpF37901D9F6CDDA9DB49B50224B1DA8D9" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filA597C7DF52F0F7301E731D47CF329CF8" KeyPath="yes" Source="$(var.ServiceHostFiles)\Squirrel.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

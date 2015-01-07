@@ -26,7 +26,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AutoGen\ClientApp.wxs" />
-    <Compile Include="AutoGen\DataHubServiceHost.wxs" />
+    <Compile Include="DataHubServiceHost.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
@@ -40,6 +40,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WixExtension Include="WixFirewallExtension">
+      <HintPath>$(WixExtDir)\WixFirewallExtension.dll</HintPath>
+      <Name>WixFirewallExtension</Name>
+    </WixExtension>
     <WixExtension Include="WixUIExtension">
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
@@ -55,7 +59,8 @@
 	-->
   <Target Name="BeforeBuild">
     <HeatDirectory OutputFile="$(ProjectDir)AutoGen\ClientApp.wxs" Directory="$(SolutionDir)releases\ClientApp\" ComponentGroupName="ClickOnceFiles" DirectoryRefId="RELEASESFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ClickOnceFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
-    <HeatDirectory OutputFile="$(ProjectDir)AutoGen\DataHubServiceHost.wxs" Directory="$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\" ComponentGroupName="DataHubServiceHost" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ServiceHostFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
+    <!-- do not remove this entry.  This is a shortcut to create the entries needed to deploy the ServiceHost product. -->
+    <!--<HeatDirectory OutputFile="$(ProjectDir)AutoGen\DataHubServiceHost.wxs" Directory="$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\" ComponentGroupName="DataHubServiceHost" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ServiceHostFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />-->
   </Target>
   <Target Name="AfterBuild">
   </Target>
