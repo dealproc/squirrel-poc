@@ -4,21 +4,21 @@
   <Bundle Name="DataHub.ServiceHost.Bootstrapper" Version="$(var.Version)" Manufacturer="Midnight Oil Systems" UpgradeCode="07349bee-eab2-4113-884d-7abf55c5c198">
     <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
 
-	<!--
+    <!--
 	Command line options for installation of PostgreSQL can be found: http://www.enterprisedb.com/docs/en/9.3/pginstguide/PostgreSQL_Installation_Guide-12.htm#P345_22347
 	Command line to uninstall PostgreSQL can be found: http://www.enterprisedb.com/docs/en/9.3/pginstguide/PostgreSQL_Installation_Guide-13.htm#P413_27929 ... need to see if
 	an env. variable can be used here to detect where it's installed at.
 	-->
-	
-	
-    <util:RegistrySearch Id="POSTGRESQLPATH_x64"
+
+
+    <util:RegistrySearch Id="POSTGRESQL_x64_INSTALLED"
                          Root="HKLM"
                          Key="SOFTWARE\PostgreSQL\Installations\postgresql-x64-9.4"
                          Result="exists"
                          Variable="POSTGRESQLINSTALLED_x64"
                          Win64="yes" />
 
-    <util:RegistrySearch Id="POSTGRESQLPATH_x86"
+    <util:RegistrySearch Id="POSTGRESQL_x86_INSTALLED"
                          Root="HKLM"
                          Key="SOFTWARE\PostgreSQL\Installations\postgresql-9.4"
                          Result="exists"
@@ -31,41 +31,47 @@
                   DisplayName="PostgreSQL 9.4"
                   InstallCondition="VersionNT64"
                   DetectCondition="POSTGRESQLINSTALLED_x64"
+                  InstallCommand="--disable-stackbuilder yes --mode unattended --superpassword @d@ptp0$ --unattendedmodeui none"
                   DownloadUrl="http://get.enterprisedb.com/postgresql/postgresql-9.4.0-1-windows-x64.exe"
-                  PerMachine="yes">
-        <RemotePayload CertificatePublicKey="72C511B090914D9BA108D6D97BB97D76E3B4D630" 
-                       CertificateThumbprint="9F7DA2FB091EED1DC830EEB2F1F619D243332A9A" 
-                       Hash="17ACF7848BC01394FB40322E67D26C69C99BE2A9" 
-                       ProductName="PostgreSQL" 
+                  PerMachine="yes" 
+                  Permanent="yes">
+        <RemotePayload CertificatePublicKey="72C511B090914D9BA108D6D97BB97D76E3B4D630"
+                       CertificateThumbprint="9F7DA2FB091EED1DC830EEB2F1F619D243332A9A"
+                       Hash="17ACF7848BC01394FB40322E67D26C69C99BE2A9"
+                       ProductName="PostgreSQL"
                        Description="PostgreSQL 9.4"
-                       Size="57511896" 
+                       Size="57511896"
                        Version="9.4.0.1" />
       </ExePackage>
+
+
 
       <ExePackage Id="PostgreSQL_x86_Installer"
                   Name="postgresql-9.4.0-1-windows.exe"
                   DisplayName="PostgreSQL 9.4"
                   InstallCondition="(NOT VersionNT64)"
                   DetectCondition="POSTGRESQLINSTALLED_x86"
+                  InstallCommand="--disable-stackbuilder yes --mode unattended --superpassword @d@ptp0$ --unattendedmodeui none"
                   DownloadUrl="http://get.enterprisedb.com/postgresql/postgresql-9.4.0-1-windows.exe"
-                  PerMachine="yes">
+                  PerMachine="yes" 
+                  Permanent="yes">
         <!-- 
         
         Command line used to generate this information
         C:\src\squirrel-poc>tools\wix-3.9\heat payload c:\Users\User\Downloads\postgresql-9.4.0-1-Windows-x64.exe -out postgresql-x64.wxs
         
         -->
-        <RemotePayload CertificatePublicKey="72C511B090914D9BA108D6D97BB97D76E3B4D630" 
+        <RemotePayload CertificatePublicKey="72C511B090914D9BA108D6D97BB97D76E3B4D630"
                        CertificateThumbprint="9F7DA2FB091EED1DC830EEB2F1F619D243332A9A"
-                       Hash="CF5066822634F1076540DE4C35AF74F0D531619F" 
-                       ProductName="PostgreSQL" 
+                       Hash="CF5066822634F1076540DE4C35AF74F0D531619F"
+                       ProductName="PostgreSQL"
                        Description="PostgreSQL 9.4"
-                       Size="58689920" 
+                       Size="58689920"
                        Version="9.4.0.1" />
       </ExePackage>
 
       <RollbackBoundary />
-      
+
       <MsiPackage Id="DataHubServiceHostMSI"
                   SourceFile="$(var.DataHub.ServiceHost.Setup.TargetPath)"
                   Vital="yes" />
