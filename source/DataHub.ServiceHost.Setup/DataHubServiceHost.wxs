@@ -8,7 +8,7 @@
       <Component Id="cmp0CA316DBE534C70B7E7E6AD1A5B2D31E" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil9283C9B1DE7FE659C7067A77745FF3B0" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe" />
         <!-- From: http://www.joyofsetup.com/2008/05/17/new-wix-feature-firewall-extension/ -->
-        <fire:FirewallException Id="FWX1" File="fil9283C9B1DE7FE659C7067A77745FF3B0" Name="DataHub.ServiceHost" Scope="any" IgnoreFailure="yes" Profile="all" Port="8080" Protocol="tcp" />
+        <fire:FirewallException Id="FWX1" Name="DataHub Service Host" Port="8080" IgnoreFailure="no" Scope="any" Profile="all" />
       </Component>
       <Component Id="cmpFFCA30133865743598888A031A2AC621" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil0F9E08B6FDAF6FA5A508639C8BC41AF1" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe.config" />
@@ -87,4 +87,14 @@
       </Component>
     </ComponentGroup>
   </Fragment>
+  
+  <!--
+  I may need these too: 
+  <CustomAction Id="CA_Firewall_EnablePing" Execute="deferred" Impersonate="no" Return="check" Directory="TARGETDIR"
+                  ExeCommand="[SystemFolder]netsh advfirewall firewall add rule name="ALL ICMP V4" protocol=icmpv4:any,any dir=in action=allow"/>
+  <InstallExecuteSequence>
+	<Custom Action="CA_Firewall_EnablePing" After="InstallInitialize">NOT Installed</Custom>
+    <Custom Action="CA_Firewall_RemoveEnablePing" After="InstallInitialize">Installed AND NOT PATCH</Custom>
+  </InstallExecuteSequence>
+  -->
 </Wix>

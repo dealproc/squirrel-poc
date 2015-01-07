@@ -4,6 +4,13 @@
   <Bundle Name="DataHub.ServiceHost.Bootstrapper" Version="$(var.Version)" Manufacturer="Midnight Oil Systems" UpgradeCode="07349bee-eab2-4113-884d-7abf55c5c198">
     <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
 
+	<!--
+	Command line options for installation of PostgreSQL can be found: http://www.enterprisedb.com/docs/en/9.3/pginstguide/PostgreSQL_Installation_Guide-12.htm#P345_22347
+	Command line to uninstall PostgreSQL can be found: http://www.enterprisedb.com/docs/en/9.3/pginstguide/PostgreSQL_Installation_Guide-13.htm#P413_27929 ... need to see if
+	an env. variable can be used here to detect where it's installed at.
+	-->
+	
+	
     <util:RegistrySearch Id="POSTGRESQLPATH_x64"
                          Root="HKLM"
                          Key="SOFTWARE\PostgreSQL\Installations\postgresql-x64-9.4"
