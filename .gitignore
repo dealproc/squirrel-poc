@@ -181,3 +181,6 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# Auto-generated WiX files
+source/DataHub.ServiceHost.Setup/[Aa]uto[Gg]en/*.wxs

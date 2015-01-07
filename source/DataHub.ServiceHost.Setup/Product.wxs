@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="DataHub Service Host" Language="1033" Version="$(var.Version)" Manufacturer="Midnight Oil Systems, LLC" UpgradeCode="e35f89d0-5dac-4479-94a3-99ad8681b48e">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" CompressionLevel="high" />
+
+    <Feature Id="ProductFeature" Title="DataHub Service Host" Level="1">
+      <ComponentGroupRef Id="DataHubServiceHost"/>
+      <ComponentGroupRef Id="ClickOnceFiles" />
+    </Feature>
+
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+    </UI>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="MANUFACTURERFOLDER" Name="Midnight Oil Systems">
+          <Directory Id="INSTALLFOLDER" Name="DataHub ServiceHost">
+            <Directory Id="RELEASESFOLDER" Name="Releases" />
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+</Wix>
