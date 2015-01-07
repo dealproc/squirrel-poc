@@ -9,6 +9,18 @@
         <File Id="fil9283C9B1DE7FE659C7067A77745FF3B0" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe" />
         <!-- From: http://www.joyofsetup.com/2008/05/17/new-wix-feature-firewall-extension/ -->
         <fire:FirewallException Id="FWX1" Name="DataHub Service Host" Port="8080" IgnoreFailure="no" Scope="any" Profile="all" />
+        <ServiceInstall Name="DataHubServiceHost"
+                        DisplayName="DataHub Service Host"
+                        ErrorControl="normal"
+                        Description="Some Fantastic Description"
+                        Start="auto"
+                        Type="ownProcess" />
+        <ServiceControl Id="DataHubServiceHostControl"
+                        Name="DataHubServiceHost"
+                        Start="install"
+                        Stop="both"
+                        Remove="uninstall"
+                        Wait="yes" />
       </Component>
       <Component Id="cmpFFCA30133865743598888A031A2AC621" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil0F9E08B6FDAF6FA5A508639C8BC41AF1" KeyPath="yes" Source="$(var.ServiceHostFiles)\DataHub.ServiceHost.exe.config" />
