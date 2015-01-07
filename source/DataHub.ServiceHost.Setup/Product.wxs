@@ -9,6 +9,10 @@
     <Feature Id="ProductFeature" Title="DataHub Service Host" Level="1">
       <ComponentGroupRef Id="DataHubServiceHost"/>
       <ComponentGroupRef Id="ClickOnceFiles" />
+      <ComponentGroupRef Id="ScriptsFiles" />
+      <ComponentGroupRef Id="FontsFiles" />
+      <ComponentGroupRef Id="ContentFiles" />
+      <ComponentGroupRef Id="ReleasesFiles"/>
     </Feature>
 
     <UI>
@@ -21,7 +25,10 @@
       <Directory Id="ProgramFilesFolder">
         <Directory Id="MANUFACTURERFOLDER" Name="Midnight Oil Systems">
           <Directory Id="INSTALLFOLDER" Name="DataHub ServiceHost">
+            <Directory Id="CONTENTFOLDER" Name="Content" />
+            <Directory Id="FONTSFOLDER" Name="fonts" />
             <Directory Id="RELEASESFOLDER" Name="Releases" />
+            <Directory Id="SCRIPTSFOLDER" Name="Scripts" />
           </Directory>
         </Directory>
       </Directory>

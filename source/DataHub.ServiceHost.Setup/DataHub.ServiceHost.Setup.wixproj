@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <Version Condition=" '$(Version)' == '' ">1.0.0.0</Version>
-    <DefineConstants>Version=$(Version);ClickOnceFiles=$(SolutionDir)releases\ClientApp\;ServiceHostFiles=$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\</DefineConstants>
+    <DefineConstants>Version=$(Version);ContentFiles=$(SolutionDir)source\DataHub.ServiceHost\Content;ReleasesFiles=$(SolutionDir)source\DataHub.ServiceHost\Releases;FontsFiles=$(SolutionDir)source\DataHub.ServiceHost\fonts;ScriptsFiles=$(SolutionDir)source\DataHub.ServiceHost\Scripts;ClickOnceFiles=$(SolutionDir)releases\ClientApp\;ServiceHostFiles=$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\</DefineConstants>
     <ProductVersion>3.9</ProductVersion>
     <ProjectGuid>bc1b755a-d418-4dd7-b564-c65e2400f7f4</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
@@ -26,6 +26,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AutoGen\ClientApp.wxs" />
+    <Compile Include="AutoGen\Content.wxs" />
+    <Compile Include="AutoGen\Fonts.wxs" />
+    <Compile Include="AutoGen\Releases.wxs" />
+    <Compile Include="AutoGen\Scripts.wxs" />
     <Compile Include="DataHubServiceHost.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
@@ -58,7 +62,11 @@
 	Other similar extension points exist, see Wix.targets.
 	-->
   <Target Name="BeforeBuild">
+    <HeatDirectory OutputFile="$(ProjectDir)AutoGen\Content.wxs" Directory="$(SolutionDir)Source\DataHub.ServiceHost\Content" ComponentGroupName="ContentFiles" DirectoryRefId="CONTENTFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ContentFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)AutoGen\Fonts.wxs" Directory="$(SolutionDir)Source\DataHub.ServiceHost\fonts" ComponentGroupName="FontsFiles" DirectoryRefId="FONTSFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.FontsFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
     <HeatDirectory OutputFile="$(ProjectDir)AutoGen\ClientApp.wxs" Directory="$(SolutionDir)releases\ClientApp\" ComponentGroupName="ClickOnceFiles" DirectoryRefId="RELEASESFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ClickOnceFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)AutoGen\Scripts.wxs" Directory="$(SolutionDir)Source\DataHub.ServiceHost\Scripts" ComponentGroupName="ScriptsFiles" DirectoryRefId="SCRIPTSFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ScriptsFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
+    <HeatDirectory OutputFile="$(ProjectDir)AutoGen\Releases.wxs" Directory="$(SolutionDir)Source\DataHub.ServiceHost\Releases" ComponentGroupName="ReleasesFiles" DirectoryRefId="RELEASESFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ReleasesFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
     <!-- do not remove this entry.  This is a shortcut to create the entries needed to deploy the ServiceHost product. -->
     <!--<HeatDirectory OutputFile="$(ProjectDir)AutoGen\DataHubServiceHost.wxs" Directory="$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\" ComponentGroupName="DataHubServiceHost" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ServiceHostFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />-->
   </Target>
