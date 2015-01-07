@@ -10,8 +10,12 @@
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>DataHub-ServiceHost-$(Platform)-$(Configuration)-$(Version)</OutputName>
     <OutputType>Package</OutputType>
+    <WixToolPath>$(SolutionDir)tools\wix-3.9\</WixToolPath>
+    <WixTargetsPath>$(WixToolPath)Wix.targets</WixTargetsPath>
+    <!--
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    -->
     <EnableProjectHarvesting>True</EnableProjectHarvesting>
     <InstallerPlatform>$(Platform)</InstallerPlatform>
   </PropertyGroup>
