@@ -5,6 +5,8 @@ namespace Management.WebHost {
         protected override void ConfigureConventions(Nancy.Conventions.NancyConventions nancyConventions) {
             base.ConfigureConventions(nancyConventions);
             Conventions.StaticContentsConventions.AddDirectory("/Releases");
+            Conventions.StaticContentsConventions.AddDirectory("/fonts");
+            Conventions.StaticContentsConventions.AddDirectory("/Scripts");
         }
     }
 }

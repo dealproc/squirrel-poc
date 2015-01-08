@@ -1,11 +1,9 @@
-﻿using Microsoft.Owin.Extensions;
-using Owin;
+﻿using Owin;
 
 namespace Management.WebHost {
     public class Startup {
         public void Configuration(IAppBuilder app) {
             app.UseNancy();
-            app.UseStageMarker(PipelineStage.MapHandler);
         }
     }
 }
