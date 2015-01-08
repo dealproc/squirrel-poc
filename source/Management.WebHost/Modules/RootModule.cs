@@ -23,7 +23,7 @@ namespace Management.WebHost.Modules {
                     return new Models.ReleasesModel.FilesModel { Filename = f.Name, Url = fileUrl };
                 });
 
-                return model;
+                return View[model];
             };
         }
     }
