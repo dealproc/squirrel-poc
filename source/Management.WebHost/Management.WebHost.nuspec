@@ -14,7 +14,6 @@
     <file src="**\*.js" target="" />
     <file src="**\*.css" target="" />
     <file src="**\*.config" target="" />
-    <file src="..\DataHub.ServiceHost.Bootstrapper\bin\$configuration$\*.exe" target="Releases\" />
-    <file src="..\DataHub.ServiceHost.Setup\bin\$configuration$\*.msi" target="Releases\" />
+    <file src="..\..\package\**" target="Releases\" />
   </files>
 </package>
