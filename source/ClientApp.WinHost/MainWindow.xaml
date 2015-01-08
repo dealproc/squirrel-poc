@@ -3,6 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <TextBox x:Name="txtSystemMessages" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="3" />
+        
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label Content="Product Version" />
+            <TextBlock x:Name="txtProductVersion" />
+            <Label Content="Update Url" />
+            <TextBox x:Name="txtUpdateUrl" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button x:Name="btnCheckForUpdates" Content="Check for Updates" />
+            <Button x:Name="btnDownloadUpdates" Content="Download Updates" />
+            <Button x:Name="btnApplyUpdates" Content="Apply Updates" />
+        </StackPanel>
     </Grid>
 </Window>
