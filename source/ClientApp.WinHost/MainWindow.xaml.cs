@@ -36,41 +36,57 @@ namespace ClientApp.WinHost {
             };
 
             btnCheckForUpdates.Click += async (s, e) => {
-                updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45);
+                try {
+                    updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45);
 
-                txtSystemMessages.AppendText("Checking for updates" + Environment.NewLine);
-                updateInfo = await updateMgr.CheckForUpdate();
+                    txtSystemMessages.AppendText("Checking for updates" + Environment.NewLine);
+                    updateInfo = await updateMgr.CheckForUpdate();
 
-                if (updateInfo == null) {
-                    txtSystemMessages.AppendText("No updates were found." + Environment.NewLine + Environment.NewLine);
-                } else if (!updateInfo.ReleasesToApply.Any()) {
-                    txtSystemMessages.AppendText("System is up to date." + Environment.NewLine + Environment.NewLine);
-                } else {
-                    foreach (var release in updateInfo.ReleasesToApply.OrderBy(x => x.Version)) {
-                        txtSystemMessages.AppendText(string.Format("Version {0} is available." + Environment.NewLine, release.Version));
+                    if (updateInfo == null) {
+                        txtSystemMessages.AppendText("No updates were found." + Environment.NewLine + Environment.NewLine);
+                    } else if (!updateInfo.ReleasesToApply.Any()) {
+                        txtSystemMessages.AppendText("System is up to date." + Environment.NewLine + Environment.NewLine);
+                    } else {
+                        foreach (var release in updateInfo.ReleasesToApply.OrderBy(x => x.Version)) {
+                            txtSystemMessages.AppendText(string.Format("Version {0} is available." + Environment.NewLine, release.Version));
+                        }
                     }
+                } catch (Exception ex) {
+                    AppendMessage(ex);
                 }
             };
 
             btnDownloadUpdates.Click += async (s, e) => {
                 if (updateMgr != null && updateInfo != null) {
-                    txtSystemMessages.AppendText("Downloading updates.");
-                    await updateMgr.DownloadReleases(updateInfo.ReleasesToApply, (progess) => {
-                        txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
-                    });
+                    try {
+                        txtSystemMessages.AppendText("Downloading updates.");
+                        await updateMgr.DownloadReleases(updateInfo.ReleasesToApply, (progess) => {
+                            txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
+                        });
+                    } catch (Exception ex) {
+                        AppendMessage(ex);
+                    }
                 }
             };
 
             btnApplyUpdates.Click += (s, e) => {
-                updateMgr.ApplyReleases(updateInfo, (progess) => {
-                    txtSystemMessages.AppendText(string.Format("Update progress: {0}", progess));
-                });
+                try {
+                    updateMgr.ApplyReleases(updateInfo, (progess) => {
+                        txtSystemMessages.AppendText(string.Format("Update progress: {0}", progess));
+                    });
+                } catch (Exception ex) {
+                    AppendMessage(ex);
+                }
             };
 
             Loaded += (s, e) => {
                 txtUpdateUrl.Text = settings.UpdateUrl;
                 txtProductVersion.Text = FileVersionInfo.GetVersionInfo(this.GetType().Assembly.Location).FileVersion;
             };
+        }
+
+        private void AppendMessage(Exception ex) {
+            txtSystemMessages.AppendText(ex.Message + Environment.NewLine);
         }
     }
 }
