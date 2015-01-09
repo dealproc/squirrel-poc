@@ -22,7 +22,7 @@ namespace ClientApp.WinHost {
                 try {
                     using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
                         txtSystemMessages.AppendText("Checking for updates" + Environment.NewLine);
-                        var updateInfo = await updateMgr.CheckForUpdate(ignoreDeltaUpdates: false, 
+                        var updateInfo = await updateMgr.CheckForUpdate(ignoreDeltaUpdates: false,
                             progress: (progess) => {
                                 txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
                             }
@@ -43,13 +43,23 @@ namespace ClientApp.WinHost {
                 }
             };
 
-            btnApplyUpdates.Click += (s, e) => {
+            btnApplyUpdates.Click += async (s, e) => {
                 using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
                     try {
-                        txtSystemMessages.AppendText("Downloading updates.");
-                        updateMgr.UpdateApp((progess) => {
+                        txtSystemMessages.AppendText("Downloading updates." + Environment.NewLine);
+                        (s as Button).IsEnabled = false;
+                        var releasesApplied = await updateMgr.UpdateApp((progess) => {
                             txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
                         });
+
+                        if (releasesApplied == null) {
+                            txtSystemMessages.AppendText("No updates were found." + Environment.NewLine);
+                        } else {
+                            txtSystemMessages.AppendText(string.Format("Version {0} was installed.", releasesApplied.Version) + Environment.NewLine);
+                        }
+
+                        (s as Button).IsEnabled = true;
+                        txtSystemMessages.AppendText("Update completed." + Environment.NewLine);
                     } catch (Exception ex) {
                         AppendMessage(ex);
                     }
