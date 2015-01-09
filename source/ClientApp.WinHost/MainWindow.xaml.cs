@@ -63,7 +63,7 @@ namespace ClientApp.WinHost {
 
                         await Task.Delay(1000);
 
-                        UpdateManager.RestartApp();
+                        Dispatcher.Invoke(() => UpdateManager.RestartApp());
                     } catch (Exception ex) {
                         AppendMessage(ex);
                     } finally {
