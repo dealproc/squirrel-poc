@@ -72,7 +72,7 @@
     <HeatDirectory OutputFile="$(ProjectDir)AutoGen\Scripts.wxs" Directory="$(SolutionDir)Source\DataHub.ServiceHost\Scripts" ComponentGroupName="ScriptsFiles" DirectoryRefId="SCRIPTSFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ScriptsFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
     <HeatDirectory OutputFile="$(ProjectDir)AutoGen\Releases.wxs" Directory="$(SolutionDir)Source\DataHub.ServiceHost\Releases" ComponentGroupName="ReleasesFiles" DirectoryRefId="RELEASESFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ReleasesFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
     <!-- do not remove this entry.  This is a shortcut to create the entries needed to deploy the ServiceHost product. -->
-    <!--<HeatDirectory OutputFile="$(ProjectDir)AutoGen\DataHubServiceHost.wxs" Directory="$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\" ComponentGroupName="DataHubServiceHost" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ServiceHostFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />-->
+    <HeatDirectory OutputFile="$(ProjectDir)AutoGen\DataHubServiceHost.wxs" Directory="$(SolutionDir)source\DataHub.ServiceHost\bin\$(Configuration)\" ComponentGroupName="DataHubServiceHost" DirectoryRefId="INSTALLFOLDER" AutogenerateGuids="true" PreprocessorVariable="var.ServiceHostFiles" SuppressRegistry="true" SuppressRootDirectory="true" ToolPath="$(WixToolPath)" NoLogo="true" />
   </Target>
   <Target Name="AfterBuild">
   </Target>

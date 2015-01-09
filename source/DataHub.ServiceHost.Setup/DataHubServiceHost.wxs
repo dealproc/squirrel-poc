@@ -43,6 +43,12 @@
       <Component Id="cmp01AA85052885F814DD68CCEEC4BF6D28" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil2DABFCAF651FA2B530D7940929963FBD" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.dll" />
       </Component>
+      <Component Id="cmp71D946EC28FE58E6C00ECDC39F372CFD" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filB834FD55BF40276D1D433107773121D3" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.FileSystems.dll" />
+      </Component>
+      <Component Id="cmp6C2923AC7B0A25212CE9047F39203D88" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil97754BF2B6953B97E39ACE563B0F0E02" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.FileSystems.xml" />
+      </Component>
       <Component Id="cmp2E6B41DBA3E69AC005273653DF0A2ADA" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil51431476551B576E0DE40837C96DAF03" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.Host.HttpListener.dll" />
       </Component>
@@ -54,6 +60,12 @@
       </Component>
       <Component Id="cmp00364872D0BC2B790B11864FDE45628A" Directory="INSTALLFOLDER" Guid="*">
         <File Id="filC78AD7286EBDE65520D8AA273521AFA1" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.Hosting.xml" />
+      </Component>
+      <Component Id="cmp94BF6753BC59DC1C8714A3571BA6009F" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="fil21EB90BD6FA8BE96D05566DF087DD9F6" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.StaticFiles.dll" />
+      </Component>
+      <Component Id="cmp02637304D0F375EDAD150FE84868A04E" Directory="INSTALLFOLDER" Guid="*">
+        <File Id="filD4B191E1AA810FA7721118574DF87D9D" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.StaticFiles.xml" />
       </Component>
       <Component Id="cmpB67C988B41CF6589537DF395BD541C70" Directory="INSTALLFOLDER" Guid="*">
         <File Id="fil55B3646256BE80E6EA514C06528BBF41" KeyPath="yes" Source="$(var.ServiceHostFiles)\Microsoft.Owin.xml" />
