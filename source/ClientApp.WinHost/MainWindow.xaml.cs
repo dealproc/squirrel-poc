@@ -1,20 +1,9 @@
 ﻿using Squirrel;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ClientApp.WinHost {
     /// <summary>
@@ -32,9 +21,12 @@ namespace ClientApp.WinHost {
             btnCheckForUpdates.Click += async (s, e) => {
                 try {
                     using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
-
                         txtSystemMessages.AppendText("Checking for updates" + Environment.NewLine);
-                        var updateInfo = await updateMgr.CheckForUpdate();
+                        var updateInfo = await updateMgr.CheckForUpdate(ignoreDeltaUpdates: false, 
+                            progress: (progess) => {
+                                txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
+                            }
+                        );
 
                         if (updateInfo == null) {
                             txtSystemMessages.AppendText("No updates were found." + Environment.NewLine + Environment.NewLine);
