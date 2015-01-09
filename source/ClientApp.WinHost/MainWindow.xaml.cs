@@ -57,13 +57,10 @@ namespace ClientApp.WinHost {
                             txtSystemMessages.AppendText("No updates were found." + Environment.NewLine);
                         } else {
                             txtSystemMessages.AppendText(string.Format("Version {0} was installed.", releasesApplied.Version) + Environment.NewLine);
+                            txtSystemMessages.AppendText("Update completed... restarting app..." + Environment.NewLine);
+                            await Task.Delay(1000);
+                            Dispatcher.Invoke(() => UpdateManager.RestartApp());
                         }
-
-                        txtSystemMessages.AppendText("Update completed... restarting app..." + Environment.NewLine);
-
-                        await Task.Delay(1000);
-
-                        Dispatcher.Invoke(() => UpdateManager.RestartApp());
                     } catch (Exception ex) {
                         AppendMessage(ex);
                     } finally {
