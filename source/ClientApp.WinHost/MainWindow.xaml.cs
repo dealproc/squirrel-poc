@@ -74,6 +74,7 @@ namespace ClientApp.WinHost {
 
         private void AppendMessage(Exception ex) {
             txtSystemMessages.AppendText(ex.Message + Environment.NewLine);
+            txtSystemMessages.AppendText(ex.StackTrace + Environment.NewLine);
         }
     }
 }
