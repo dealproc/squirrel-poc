@@ -55,7 +55,7 @@ namespace ClientApp.WinHost {
                 using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
                     try {
                         txtSystemMessages.AppendText("Downloading updates.");
-                        updateMgr.UpdateApp(, (progess) => {
+                        updateMgr.UpdateApp((progess) => {
                             txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
                         });
                     } catch (Exception ex) {
