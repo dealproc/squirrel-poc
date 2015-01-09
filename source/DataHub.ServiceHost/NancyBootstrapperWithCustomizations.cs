@@ -15,7 +15,7 @@ namespace DataHub.ServiceHost {
             Conventions.StaticContentsConventions.AddFile("/releases/RELEASES", Path.Combine(
                 Path.GetDirectoryName(
                     Assembly.GetExecutingAssembly().Location
-                ), "Releases")
+                ), "Releases/RELEASES")
             );
         }
     }
