@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -58,10 +59,15 @@ namespace ClientApp.WinHost {
                             txtSystemMessages.AppendText(string.Format("Version {0} was installed.", releasesApplied.Version) + Environment.NewLine);
                         }
 
-                        (s as Button).IsEnabled = true;
-                        txtSystemMessages.AppendText("Update completed." + Environment.NewLine);
+                        txtSystemMessages.AppendText("Update completed... restarting app..." + Environment.NewLine);
+
+                        await Task.Delay(1000);
+
+                        UpdateManager.RestartApp();
                     } catch (Exception ex) {
                         AppendMessage(ex);
+                    } finally {
+                        (s as Button).IsEnabled = true;
                     }
                 }
             };
