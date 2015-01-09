@@ -21,14 +21,12 @@ namespace ClientApp.WinHost {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        UpdateInfo updateInfo = null;
         public MainWindow() {
             InitializeComponent();
             var settings = new RegistrySettings();
 
             txtUpdateUrl.TextChanged += (s, e) => {
                 settings.UpdateUrl = (s as TextBox).Text;
-                updateInfo = null;
             };
 
             btnCheckForUpdates.Click += async (s, e) => {
@@ -36,7 +34,7 @@ namespace ClientApp.WinHost {
                     using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
 
                         txtSystemMessages.AppendText("Checking for updates" + Environment.NewLine);
-                        updateInfo = await updateMgr.CheckForUpdate();
+                        var updateInfo = await updateMgr.CheckForUpdate();
 
                         if (updateInfo == null) {
                             txtSystemMessages.AppendText("No updates were found." + Environment.NewLine + Environment.NewLine);
@@ -53,30 +51,16 @@ namespace ClientApp.WinHost {
                 }
             };
 
-            btnDownloadUpdates.Click += async (s, e) => {
-                if (updateInfo != null) {
-                    using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
-                        try {
-                            txtSystemMessages.AppendText("Downloading updates.");
-                            await updateMgr.DownloadReleases(updateInfo.ReleasesToApply, (progess) => {
-                                txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
-                            });
-                        } catch (Exception ex) {
-                            AppendMessage(ex);
-                        }
-                    }
-                }
-            };
-
             btnApplyUpdates.Click += (s, e) => {
-                try {
-                    using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
-                        updateMgr.ApplyReleases(updateInfo, (progess) => {
-                            txtSystemMessages.AppendText(string.Format("Update progress: {0}", progess));
+                using (var updateMgr = new UpdateManager(settings.UpdateUrl, settings.PackageId, FrameworkVersion.Net45)) {
+                    try {
+                        txtSystemMessages.AppendText("Downloading updates.");
+                        updateMgr.UpdateApp(, (progess) => {
+                            txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
                         });
+                    } catch (Exception ex) {
+                        AppendMessage(ex);
                     }
-                } catch (Exception ex) {
-                    AppendMessage(ex);
                 }
             };
 

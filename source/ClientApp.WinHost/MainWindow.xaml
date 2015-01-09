@@ -24,7 +24,6 @@
         
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Button x:Name="btnCheckForUpdates" Content="Check for Updates" />
-            <Button x:Name="btnDownloadUpdates" Content="Download Updates" />
             <Button x:Name="btnApplyUpdates" Content="Apply Updates" />
         </StackPanel>
     </Grid>
