@@ -24,7 +24,7 @@ namespace ClientApp.WinHost {
                         txtSystemMessages.AppendText("Checking for updates" + Environment.NewLine);
                         var updateInfo = await updateMgr.CheckForUpdate(ignoreDeltaUpdates: false,
                             progress: (progess) => {
-                                txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
+                                txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess) + Environment.NewLine);
                             }
                         );
 
@@ -49,7 +49,7 @@ namespace ClientApp.WinHost {
                         txtSystemMessages.AppendText("Downloading updates." + Environment.NewLine);
                         (s as Button).IsEnabled = false;
                         var releasesApplied = await updateMgr.UpdateApp((progess) => {
-                            txtSystemMessages.AppendText(string.Format("Download progress: {0}", progess));
+                            txtSystemMessages.AppendText(string.Format("Download progress: {0}" + Environment.NewLine, progess));
                         });
 
                         if (releasesApplied == null) {
