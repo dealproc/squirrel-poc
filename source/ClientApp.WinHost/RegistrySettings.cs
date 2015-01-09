@@ -32,7 +32,7 @@ namespace ClientApp.WinHost {
             set { _ApplicationKey.SetValue("Update Url", value); }
         }
         public string PackageId {
-            get { return "clientapp.winhost"; }
+            get { return "clientapp"; }
         }
     }
 }

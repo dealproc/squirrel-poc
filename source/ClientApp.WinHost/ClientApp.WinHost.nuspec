@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>clientapp.winhost</id>
+    <id>clientapp</id>
     <version>$version$</version>
     <title>Demo - WPF Client App</title>
     <authors>Richard A. Bennett</authors>
