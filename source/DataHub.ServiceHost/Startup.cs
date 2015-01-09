@@ -1,5 +1,4 @@
-﻿using Nancy;
-using Owin;
+﻿using Owin;
 
 namespace DataHub.ServiceHost {
     public class Startup {
