@@ -152,19 +152,14 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
-  <PropertyGroup>
-    <PostBuildEvent>
-      $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package
-      $(SolutionDir)packages\squirrel.windows.0.8.0\tools\squirrel.exe -releasify=$(SolutionDir)package\ClientApp.$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-      rename $(SolutionDir)releases\ClientApp\$(ProjectName)-0.0.1-full.nupkg $(ProjectName)-0.0.1-full.zip
-  -->
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(SolutionDir)package" Condition="!Exists('$(SolutionDir)package')" />
     <Delete Files="$(SolutionDir)package\**" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+      $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package
+      $(SolutionDir)packages\squirrel.windows.0.8.0\tools\squirrel.exe -releasify=$(SolutionDir)package\$(ProjectName).$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
