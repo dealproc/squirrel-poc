@@ -152,14 +152,14 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
-  <Target Name="BeforeBuild">
-    <MakeDir Directories="$(SolutionDir)package" Condition="!Exists('$(SolutionDir)package')" />
-    <Delete Files="$(SolutionDir)package\**" />
-  </Target>
   <PropertyGroup>
     <PostBuildEvent>
       $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package
       $(SolutionDir)packages\squirrel.windows.0.8.0\tools\squirrel.exe -releasify=$(SolutionDir)package\$(ProjectName).$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
     </PostBuildEvent>
   </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="$(SolutionDir)package" Condition="!Exists('$(SolutionDir)package')" />
+    <Delete Files="$(SolutionDir)package\**" />
+  </Target>
 </Project>
