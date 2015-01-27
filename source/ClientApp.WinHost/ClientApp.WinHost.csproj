@@ -48,8 +48,9 @@
     <Reference Include="DeltaCompressionDotNet.PatchApi">
       <HintPath>..\..\packages\DeltaCompressionDotNet.1.0.0\lib\net45\DeltaCompressionDotNet.PatchApi.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\packages\squirrel.windows.0.7.2\lib\Net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\squirrel.windows.0.8.0\lib\Net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.XmlTransform">
       <HintPath>..\..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
@@ -70,11 +71,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\NuGet.Core.2.8.3\lib\net40-Client\NuGet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Splat">
-      <HintPath>..\..\packages\Splat.1.5.1\lib\Net45\Splat.dll</HintPath>
+    <Reference Include="Splat, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Splat.1.6.0\lib\Net45\Splat.dll</HintPath>
     </Reference>
-    <Reference Include="Squirrel">
-      <HintPath>..\..\packages\squirrel.windows.0.7.2\lib\Net45\Squirrel.dll</HintPath>
+    <Reference Include="Squirrel, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\squirrel.windows.0.8.0\lib\Net45\Squirrel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -150,8 +153,9 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package
-$(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)package\ClientApp.$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\</PostBuildEvent>
+    <PostBuildEvent>
+      $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package
+      $(SolutionDir)packages\squirrel.windows.0.8.0\tools\squirrel.exe -releasify=$(SolutionDir)package\ClientApp.$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
