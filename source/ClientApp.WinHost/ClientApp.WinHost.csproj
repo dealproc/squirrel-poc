@@ -49,7 +49,7 @@
       <HintPath>..\..\packages\DeltaCompressionDotNet.1.0.0\lib\net45\DeltaCompressionDotNet.PatchApi.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\packages\squirrel.windows.0.7.2\lib\Net45\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\packages\squirrel.windows.0.8.0\lib\Net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.XmlTransform">
       <HintPath>..\..\packages\Microsoft.Web.Xdt.2.1.1\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
@@ -74,7 +74,7 @@
       <HintPath>..\..\packages\Splat.1.5.1\lib\Net45\Splat.dll</HintPath>
     </Reference>
     <Reference Include="Squirrel">
-      <HintPath>..\..\packages\squirrel.windows.0.7.2\lib\Net45\Squirrel.dll</HintPath>
+      <HintPath>..\..\packages\squirrel.windows.0.8.0\lib\Net45\Squirrel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -152,7 +152,7 @@
   <PropertyGroup>
     <PostBuildEvent>
       $(SolutionDir).nuget\nuget.exe pack $(ProjectDir)$(ProjectName).nuspec -Prop Configuration=$(ConfigurationName) -Version $(Version) -OutputDirectory $(SolutionDir)package
-      $(SolutionDir)packages\squirrel.windows.0.7.2\tools\squirrel.exe -releasify=$(SolutionDir)package\$(ProjectName).$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
+      $(SolutionDir)packages\squirrel.windows.0.8.0\tools\squirrel.exe -releasify=$(SolutionDir)package\$(ProjectName).$(Version).nupkg --releaseDir=$(SolutionDir)releases\ClientApp\
 </PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
